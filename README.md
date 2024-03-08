@@ -8,10 +8,12 @@ this app  functions, by creating recipes displaying them,and has inbuilt recipe 
  run
  ``` pip install -r requirements.txt
 ```
-then ```
-python manage.py makemigrations```
+then
+```
+python manage.py makemigrations
+```
 
-after mking migrations  migrate it
+after making migrations  migrate it
 ```
 python manage.py migrate ``
 
