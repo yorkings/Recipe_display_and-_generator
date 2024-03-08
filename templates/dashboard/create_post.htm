@@ -1,0 +1,26 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Create post{% endblock%}
+{% load static %}
+{% block content %}
+ <link rel="stylesheet" href="{% static 'post.css' %}">
+  
+  <div class="post-creation">
+    <h4>Creating recipe</h4>
+     <form action="" class="form-group">
+        {{post.media}}
+        <div class="labeling">
+                {% for post in post %}
+                <div>
+                    <span>{{post.label}}:</span>
+                    <div class="content">
+                        {{post}}
+                    </div>
+                </div>    
+            
+                 
+                {% endfor %}
+                <button type="submit">create post</button>
+        </div>
+     </form>
+  </div>
+{% endblock %}

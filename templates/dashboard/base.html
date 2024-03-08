@@ -1,0 +1,67 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%}{% endblock%}</title>
+
+    <link rel="stylesheet" href="{% static 'navi.css' %}">
+    <script src="https://kit.fontawesome.com/ef14bb597e.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <header>
+        <div class="logo">Ecocooks</div>
+        
+        <input type="checkbox" id="nav_check" hidden>
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                <li ><img src="{{profile.image.url}}" alt="" onclick="openProfile()"></li>
+                <li ><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li><a href="">Learn</a></li>
+                <li><a href="">Generator</a></li>
+                <li><a href="{% url 'create_post' %}">post</a></li>
+                <li><a href="">cosmetics</a></li>
+                
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                {%else %}
+                <li ><a href="">Home</a></li>
+                <li ><a href="">Dashboard</a></li>
+                <li><a href="">Learn</a></li>
+                <li><a href="">Generator</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <label for="nav_check" class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </label>
+    </header>
+    <div class="start">
+        <div class="content">
+            {% if messages %}
+            {% for mess in messages %}
+                <p>{{ mess }}</p>
+            {% endfor %}
+        {% endif %}
+            {% block content %}{% endblock%}
+        </div>
+        
+    </div>
+   <!-- Your HTML code -->
+<!-- Your HTML code -->
+<script>
+   function openProfile() {
+    // Perform redirection to the profile page using the URL template tag
+    window.location.href = "{% url 'profile' %}";
+  }
+</script>
+</body>
+</html>
+

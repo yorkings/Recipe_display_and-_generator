@@ -1,0 +1,24 @@
+{% extends 'register/base.html' %}
+{% block title %}register{% endblock %}
+{% block content %}
+
+<div>
+    <form action="" method="post">
+      <legend class="legen-class"> Register</legend>
+      {% csrf_token %}
+      {% for field in form %}
+        <div>
+          {{ field }}
+          <p class="line"></p>
+        </div>
+      {% endfor %}
+      <button type="submit" class="login-btn">signin</button>
+      <a class="btn btn-dark" href="{% url 'dashboard' %}">Dashboard</a>
+    </form>
+  
+  <div>
+     <p>Already have an account?? <a href="{% url 'login' %}">sign-in</a></p>
+     
+  </div>
+</div>  
+{% endblock %}

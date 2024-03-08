@@ -1,0 +1,26 @@
+body{
+    align-items: center;
+    text-align: center
+}
+.post-creation{
+    align-items: center;
+    text-align: center;
+    width: 80%;
+}
+h4{
+    font-size: 2em;
+    font-family: Helvetica;
+    text-transform: uppercase;
+}
+span{
+    font-family:Geneva;
+    font-size: 1.4em;
+    font-weight: 300;
+}
+input{
+  width: 70%;
+  height: 2rem;
+  border: 2px solid ;
+  border-radius: 10px;
+  border: none;
+}

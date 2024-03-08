@@ -1,0 +1,39 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'nav.css' %}">
+<script src="https://kit.fontawesome.com/ef14bb597e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">Ecocooks</div>
+        <div class="humberger">
+        </div>
+            <nav class="navbar">
+                <ul>
+                    <li class="nav-item hideonmobile"><a href="">Home</a></li>
+                    <li class="nav-item hideonmobile"><a href="">Dashboard</a></li>
+                    <li class="nav-item hideonmobile"><a href="">Learn</a></li>
+                    <li class="nav-item hideonmobile"><a href="">Recipe Generator</a></li>
+                    <li class="nav-item hideonmobile"><a href="">About</a></li>
+                    <li class="nav-item hideonmobile"><a href="">About</a></li>
+                    <li class="nav-item hideonmobile"><a href="">Login</a></li>
+                    <li class="nav-item" onclick="showSidebar()"><a href="" class="fab"><i class="fa-solid fa-bars" style="color: #e9eaed;font-size: 24px;"></i></a></li>
+                </ul>
+            </nav>
+            {% if user.is_authenticated %}
+            <nav class="navbar">
+                <ul>
+                    <li class="nav-item "><a href="" >Dashboard</a></li>
+                    <li class="nav-item hideonmobile"><a href="" class="hideonmobile">Learn</a></li>
+                    <li class="nav-item hideonmobile"><a href="" class="hideonmobile">Recipe Generator</a></li>
+                    <li class="nav-item hideonmobile"><a href="" class="hideonmobile">Create Post</a></li>
+                    <li class="nav-item hideonmobile"><a href=""class="hideonmobile">Profile</a></li>
+                    <li class="nav-item hideonmobile"><a href="" class="hideonmobile">Logout</a></li>
+                    <li class="nav-item"><a href="" class="fab"><i class="fa-solid fa-bars" style="color: #e9eaed;font-size: 24px;"></i></a></li>
+                </ul>
+            </nav>
+            {% endif %}
+            
+    </header>
+    
+</body>
+</html>

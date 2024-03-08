@@ -1,0 +1,68 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'profi.css' %}">
+<div class="container">
+    <div class="profile">
+
+        <img src="{{ profile.image.url }}" alt="">
+        <p>{{ profile.bios }}</p>
+        <p class="user">{{ user }}</p>
+    </div>
+    <div class="profile-details">
+       <table>
+           <legend>USER DETAILS</legend>
+           <tr>
+               <th>Username:</th>
+               <td>{{ user.username }}</td>
+           </tr>
+           <tr>
+               <th>First Name:</th>
+               <td>{{ user.first_name }}</td>
+           </tr>
+           <tr>
+               <th>Last Name:</th>
+               <td>{{ user.last_name }}</td>
+           </tr>
+           <tr>
+               <th>Email:</th>
+               <td>{{ user.email }}</td>
+           </tr>
+           <tr>
+               <th>Location:</th>
+               <td>{{ profile.location }}</td>
+           </tr>
+           <tr>
+               <th>Mobile Number:</th>
+               <td>{{ profile.mobile_no }}</td>
+           </tr>
+       </table>
+    </div>
+    <div class="profile-edit">
+        <form action="" method="post" enctype="multipart/form-data">
+             {% csrf_token %}
+              <div class="text">
+                 <h4>PROFILE EDIT</h4>
+                  {% for prof in form %}
+                   
+                   <p class="small">{{ prof }}</p>
+                   {% endfor %}
+              </div>
+              <button type="submit" class="btn btn-primary md2">Update</button>
+    </div>
+    <div class="user-edit">
+         <h4>USER EDIT</h4>
+       
+            {% csrf_token %}
+            {% for use in user_form %}
+                <div class="use-text">
+                  {{ use }}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary md2">Update</button>
+        </form>
+    </div>
+</div>
+ 
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'dash.css' %}">
+<div class="container-fluid counts">
+    
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title">Total posts</div>
+            <h2>{{ post_count }}</h2>
+        </div>
+    </div> 
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title">Total cosmetics</div>
+            <h2>{{ cosmetics_count }}</h2>
+        </div>
+    </div>     
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title">Lessons available</div>
+            <h2>{{ lessons_count }}</h2>
+        </div>
+    </div>  
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title">Total categories</div>
+            <h2>{{ category_count }}</h2>
+        </div>
+    </div>  
+</div>
+
+<div class="container">
+   
+    {% for post in posted_posts %}
+     <div class="cont">
+        <div class="title">{{post.title}}</div>
+        <div class="image">
+          <img src="{{post.image.url}}" alt="">  
+        </div>
+        <div class="description">
+            {{post.body | truncatewords:20|safe}}
+        </div>
+    <a href="{% url 'post_detail' post.id %}" class="btn btn-more">More..</a>
+     </div>
+     {% endfor %}
+</div>
+
+{% endblock %}
