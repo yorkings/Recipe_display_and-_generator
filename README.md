@@ -4,19 +4,7 @@ this app  functions, by creating recipes displaying them,and has inbuilt recipe 
 
 ### installation process
 <hr>
- first make sure you have python
- run
+ first make sure you have python then run
  ``` pip install -r requirements.txt
-```
-then
-```
-python manage.py makemigrations
-```
-
-after making migrations  migrate it
-```
-python manage.py migrate ``
-
-then you vcn now run it by typing
 ```
 python manage.py runserver```
