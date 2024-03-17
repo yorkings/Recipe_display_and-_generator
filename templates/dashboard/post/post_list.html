@@ -1,0 +1,26 @@
+{% extends "dashboard/post/base.html" %}
+{% block title %}posts{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'dash.css' %}">
+<div class="container-fluid counts">
+    
+
+<div class="container">
+   
+    {% for post in posts %}
+     <div class="cont">
+        <div class="title">{{post.title}}</div>
+        <div class="image">
+          <img src="{{post.image.url}}" alt="">  
+        </div>
+        <div class="description">
+            {{post.body | truncatewords:20|safe}}
+        </div>
+    <a href="{% url 'post_detail' post.id %}" class="btn btn-more">More..</a>
+     </div>
+     {% endfor %}
+</div>
+
+{% endblock %}

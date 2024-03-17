@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/ef14bb597e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'base_post.css' %}">
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+ <div id="sidebar">
+    <a href=""></a>
+    <a href="{% url 'dashboard' %}">dashboard</a>
+    <a href="{% url 'post_list' %}">Post</a>
+    <a href="{% url 'create_post' %}">Create Post</a> 
+    
+     
+ </div>
+ {% if messages %}
+            {% for mess in messages %}
+                <p>{{ mess }}</p>
+            {% endfor %}
+        {% endif %}
+  <div id="content">
+    {% block content %}
+
+    {% endblock %}
+  </div>
+ 
+</body>
+</html>

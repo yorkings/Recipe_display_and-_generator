@@ -1,26 +1,55 @@
-body{
-    align-items: center;
-    text-align: center
+/* post.css */
+
+.post-creation {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
 }
-.post-creation{
-    align-items: center;
+
+h4 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.labeling {
+    margin-top: 20px;
+}
+
+.labeling div {
+    margin-bottom: 15px;
+}
+
+.labeling span {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.content {
+    /* Style CKEditor content area */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
     text-align: center;
-    width: 80%;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
 }
-h4{
-    font-size: 2em;
-    font-family: Helvetica;
-    text-transform: uppercase;
-}
-span{
-    font-family:Geneva;
-    font-size: 1.4em;
-    font-weight: 300;
-}
-input{
-  width: 70%;
-  height: 2rem;
-  border: 2px solid ;
-  border-radius: 10px;
-  border: none;
+
+button:hover {
+    background-color: #45a049;
 }

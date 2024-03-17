@@ -67,4 +67,13 @@ class UserProfileForm(forms.ModelForm):
             'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your last name'}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'}),
         }
-        
+
+class CosmeticsForm(forms.ModelForm):
+    class Meta:
+        model=Cosmetics
+        fields="__all__"
+
+class LearningForm(forms.ModelForm):
+    class Meta:
+        model = Learning
+        fields = ['image', 'video', 'ingredients', 'procedure', 'difficulty']

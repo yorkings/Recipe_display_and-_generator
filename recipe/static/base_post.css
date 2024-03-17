@@ -1,0 +1,36 @@
+#sidebar {
+    position: fixed;
+    width:20%;
+    height:100%;
+    background: #213d57;
+    padding-top: 20px;
+    color: #fff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+#sidebar a {
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 18px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+    border-bottom: 1px solid #555;
+}
+
+#sidebar a:hover {
+    background-color: #555;
+}
+#content{
+ margin-left: 20%;   
+ padding: 1.98em;
+ 
+}
+@media screen and (max-width:700) {
+    #sidebar{
+        width:10%;
+    }
+    #sidebar a{
+        font-size: 0.7rem;
+    }
+}

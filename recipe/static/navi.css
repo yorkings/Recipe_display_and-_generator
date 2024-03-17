@@ -62,6 +62,26 @@ header nav ul li a:hover:not(.nob) {
 .content{
     padding-top:0.2rem ;
 }
+
+#sidebar a {
+    text-decoration: none;
+    padding: 20px;
+    font-size: 18px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+    border-bottom: 1px solid #555;
+}
+
+#sidebar a:hover {
+    background-color: #555;
+}
+
+
+#content{
+ margin-left: 20%;   
+ padding: 1.98em;
+}
 @media only screen and (max-width: 900px) {
     header {
         padding: 0 30px;

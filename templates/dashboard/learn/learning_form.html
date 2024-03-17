@@ -1,0 +1,25 @@
+{% extends 'dashboard/learn/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'post.css' %}">
+  
+<div class="post-creation">
+  <h4> lessons</h4>
+   <form action="" class="form-group">
+      {{form.media}}
+      <div class="labeling">
+              {% for form in form %}
+              <div>
+                  <span>{{form.label}}:</span>
+                  <div class="content">
+                      {{form}}
+                  </div>
+              </div>    
+          
+               
+              {% endfor %}
+              <button type="submit">submit lessons</button>
+      </div>
+   </form>
+</div>
+{% endblock %}

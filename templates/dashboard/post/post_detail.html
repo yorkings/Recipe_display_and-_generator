@@ -1,0 +1,22 @@
+{% extends 'dashboard/post/base.html' %}
+{% block title %}Post Detail{% endblock %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'list.css' %}">
+
+<div class="container">
+    <div class="post-detail">
+        <h1>{{ post.title|safe }}</h1>
+        <img src="{{ post.image.url }}" alt="Post Image">
+        <p><strong>Categories:</strong> {{ post.categories }}</p>
+        <p><strong>Ingredients:</strong> {{ post.ingredients|safe }}</p>
+        <p><strong>Body:</strong> {{ post.body|safe }}</p>
+        <p class="author">Created by {{ post.author }}</p>
+        {% if user == post.author %}
+            <a href="{% url 'edit_post' post.id %}">Edit Post</a>
+            <a href="{% url 'delete_post' post.id %}" class="delete-btn">Delete Post</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+

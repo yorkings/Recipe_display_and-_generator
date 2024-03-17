@@ -74,7 +74,35 @@ def dashboard(request):
     } 
     return render(request, 'dashboard/dashboard.html', context)
 
-# @login_required
+@login_required
+def user_profile(request):
+    user = request.user
+    profile = Profile.objects.get(user=user)
+
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        user_form = UserProfileForm(request.POST, instance=user.profile)
+
+        if form.is_valid() and user_form.is_valid():
+            form.save()
+            user_form.save()
+            messages.success(request, 'Profile updated successfully!')
+            return redirect('profile')  # Replace 'profile' with the actual URL name for the user profile page
+        else:
+            messages.error(request, 'Error updating profile. Please correct the errors below.')
+
+    else:
+        form = ProfileForm(instance=profile)
+        user_form = UserProfileForm(instance=user.profile)
+
+    context = {
+        'form': form,
+        'user_form': user_form,
+        'profile':profile
+    }
+
+    return render(request, 'dashboard/profile.html', context)
+@login_required
 def Create_post(request):
     user=request.user
     if request.method=='POST':
@@ -82,6 +110,7 @@ def Create_post(request):
         if post.is_valid():
             sav= post.save(commit=False)
             sav.author=user
+            sav.save()
             return redirect('post_list')
         else:
             messages.error(request,'there are some missing fields')    
@@ -100,27 +129,24 @@ def edit_post(request,id):
             messages.error(request,'there are some missing fields')    
     else:
       post=PostForm(instance=pos)
-    return render(request,'dashboard/edit_post.html',{'post':post})
+    return render(request,'dashboard/post/edit_post.html',{'post':post})
 
 
 def post_list(request):
+    user=request.user
     post=Post.objects.all()
-    return render(request,'dashboard/post.html',{'post':post}) 
+    return render(request,'dashboard/post/post_list.html',{'posts':post}) 
 
 def delete_post(request,id):
-    if request.method=='Post':
-        post=Post.objects.get(id=id)
-        post.delete()
-    else:
-        post=Post.objects.get(id=id)
-    context={
-        'post':post
-    }    
-    return render(request,'dashboard/delete_post.html',context) 
+    
+    post=Post.objects.get(id=id)
+    post.delete()
+
+    return redirect('dashboard')
 
 def post_detail(request,id):
     post=Post.objects.get(id=id)
-    comment = Comment.objects.get(post=post)
+    
     if request.method=='POST':
         comform=CommentForm(request.POST)
         if comform.is_valid():
@@ -131,9 +157,9 @@ def post_detail(request,id):
     else:
         comform=CommentForm()  
     context={ 'post':post,
-             'comment':comment,
+            
              'form':comform }         
-    return render(request,'dashboard/post_detail.html',context)
+    return render(request,'dashboard/post/post_detail.html',context)
 
 def cosmetics_display(request):
     cosm=Cosmetics.objects.all()
@@ -156,16 +182,48 @@ def cosmetics_create(request):
             cosmform.save()
     else:
         cosmform=CosmeticsForm()        
-    return render(request,'dashboard/create_cosmetics.html',{'form':cosmform})
+    return render(request,'dashboard/cosm/create_cosmetics.html',{'form':cosmform})
 
 
-def delete_cosmetics(request,id):
-    if request.method=='Post':
-        cosmetics=Cosmetics.objects.get(id=id)
-        cosmetics.delete()
+def delete_cosmetics(request,id):  
+    cosmetics=Cosmetics.objects.get(id=id)
+    cosmetics.delete()
+    return redirect("learning_list") 
+
+
+def learning_list(request):
+    learnings = Learning.objects.all()
+    return render(request, 'dashboard/learn/learning_list.html', {'learnings': learnings})
+
+def learning_detail(request, pk):
+    learning = Learning.objects.get(pk=pk)
+    return render(request, 'dashboard/learn/learning_detail.html', {'learning': learning})
+
+def learning_create(request):
+    if request.method == 'POST':
+        form = LearningForm(request.POST, request.FILES)
+        if form.is_valid():
+            learning = form.save(commit=False)
+            learning.user = request.user
+            learning.save()
+            return redirect('learning_list')
     else:
-     cosmetics=cosmetics.objects.get(id=id)
-    context={
-        'post':cosmetics
-    }    
-    return render(request,'dashboard/delete_cosmetics.html',context) 
+        form = LearningForm()
+    return render(request, 'dashboard/learn/learning_form.html', {'form': form})
+
+def learning_edit(request, pk):
+    learning = Learning.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = LearningForm(request.POST, request.FILES, instance=learning)
+        if form.is_valid():
+            form.save()
+            return redirect('learning_list')
+    else:
+        form = LearningForm(instance=learning)
+    return render(request, 'dashboard/learn/learning_form.html', {'form': form})
+
+def learning_delete(request, pk):
+    learning = Learning.objects.get(pk=pk)
+    learning.delete()
+    return redirect('learning_list')
+    

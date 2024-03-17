@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/ef14bb597e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'base_post.css' %}">
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+  {% if messages %}
+  {% for mess in messages %}
+      <p>{{ mess }}</p>
+  {% endfor %}
+{% endif %}
+ <div id="sidebar">
+    <a href="{% url 'dashboard' %}">dashboard</a>
+    <a href="{% url 'cosmetics_list' %}">cosmetics</a>
+    <a href="{% url 'create_cosmetics' %}">create cosmetics</a>   
+ </div>
+  <div id="content">
+    {% block content %}
+       
+    {% endblock %}
+  </div>
+ 
+</body>
+</html>

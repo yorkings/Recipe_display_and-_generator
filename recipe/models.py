@@ -5,9 +5,14 @@ from django.utils import timezone
 from ckeditor.fields import RichTextField
 from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
+class Category(models.Model):
+  name=models.CharField(max_length=100)
+  def __str__(self):
+    return self.name
+
 class Post(models.Model):
   author=models.ForeignKey(User,on_delete=models.CASCADE)
-  categories = models.ManyToManyField("Category", related_name="posts")
+  categories = models.ForeignKey(Category,on_delete=models.CASCADE,related_name="posts")
   image=models.ImageField(upload_to='posts',default='food.webp')
   title=models.CharField(max_length=250)
   slug=models.SlugField()
@@ -20,10 +25,6 @@ class Post(models.Model):
   def __str__(self):
     return self.title
   
-class Category(models.Model):
-  name=models.CharField(max_length=100)
-  def __str__(self):
-    return self.name
 
 
 class Profile(models.Model):

@@ -1,0 +1,29 @@
+<div class="logo">Ecocooks</div>
+        
+<input type="checkbox" id="nav_check" hidden>
+<nav>
+    <ul>
+        {% if user.is_authenticated %}
+        <li ><img src="{{profile.image.url}}" alt="" onclick="openProfile()"></li>
+        <li ><a href="{% url 'dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'learning_list' %}">Learn</a></li>
+        <li><a href="">Generator</a></li>
+        <li><a href="{% url 'create_post' %}">post</a></li>
+        <li><a href="{% url 'create_cosmetics' %}">cosmetics</a></li>
+        
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        {%else %}
+        <li ><a href="">Home</a></li>
+        <li ><a href="{% url 'dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'learning_list' %}">Learn</a></li>
+        <li><a href="">Generator</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+</nav>
+<label for="nav_check" class="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+</label>
